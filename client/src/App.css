@@ -1,0 +1,342 @@
+/* App.css - Dark Theme */
+
+/* Base Styles */
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #5649c0;
+  --accent-color: #7d6bff;
+  --dark-bg: #121212;
+  --dark-surface: #1e1e1e;
+  --dark-surface-light: #2a2a2a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --success-color: #00cec9;
+  --warning-color: #fd79a8;
+  --gray-color: #424242;
+  --light-gray: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+}
+
+/* App Container */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: var(--dark-surface);
+  overflow: hidden;
+}
+
+/* Desktop Full Width */
+@media (min-width: 992px) {
+  .app {
+    max-width: 100%;
+  }
+  
+  .messages {
+    padding: 1rem 15%;
+  }
+}
+
+/* Login Screen */
+.username-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.username-screen h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.username-screen input {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.username-screen input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.username-screen input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.username-screen button {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.username-screen button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Chat Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--dark-surface-light);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+.header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.logout {
+  padding: 0.5rem 1rem;
+  background-color: var(--warning-color);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout:hover {
+  background-color: #e84393;
+}
+
+/* Messages Container */
+.messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: rgb(42, 40, 40);
+ 
+  background-size: 20px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--dark-surface);
+}
+
+/* Custom scrollbar for WebKit browsers */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: var(--dark-surface);
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+/* Message Styles */
+.message {
+  max-width: 80%;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  position: relative;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message.own {
+  margin-left: auto;
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.message.other {
+  margin-right: auto;
+  background-color: var(--dark-surface-light);
+  border-bottom-left-radius: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.message.system {
+  margin: 0 auto;
+  background-color: transparent;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.meta {
+  font-size: 0.75rem;
+  margin-bottom: 0.3rem;
+  opacity: 0.8;
+}
+
+.message.own .meta {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message.other .meta {
+  color: var(--text-secondary);
+}
+
+.seen {
+  font-size: 0.7rem;
+  text-align: right;
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Typing Indicator */
+.typing {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--dark-surface-light);
+  color: var(--text-secondary);
+  border-radius: 1.2rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+  padding: 1.2rem;
+  background-color: var(--dark-surface-light);
+  border-top: 1px solid var(--gray-color);
+}
+
+.input-container input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  background-color: var(--dark-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--gray-color);
+  border-radius: 2rem;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-container input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input-container input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
+}
+
+.input-container button {
+  margin-left: 1rem;
+  padding: 0.9rem 1.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-container button:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .message {
+    max-width: 85%;
+    padding: 0.7rem 1rem;
+  }
+  
+  .input-container {
+    padding: 1rem;
+  }
+  
+  .input-container button {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .message {
+    max-width: 90%;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .meta {
+    font-size: 0.7rem;
+  }
+  
+  .input-container {
+    padding: 0.8rem;
+  }
+  
+  .input-container input {
+    padding: 0.8rem 1rem;
+  }
+  
+  .input-container button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
